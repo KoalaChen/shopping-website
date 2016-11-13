@@ -1,0 +1,50 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/MainSite.Master" AutoEventWireup="false" CodeBehind="MemberSite.Master.vb" Inherits="我的你的購物網.MemberMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <!--#INCLUDE FILE="IsMember.aspx"-->
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <table class="style1">
+        <tr>
+            <td colspan="7">
+                <h1>會員專區</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Hyperlink ID="defaultHyperlink" runat="server" NavigateUrl="~/Member/Default.aspx">專區首頁</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="cartHyperlink" runat="server" NavigateUrl="~/Member/cart.aspx">我的購物</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="refectReportHyperlink" runat="server" NavigateUrl="~/Member/defect_report.aspx">問題回報</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="emailLinkHyperlink" runat="server" NavigateUrl="~/Member/email_link.aspx">帳號連結</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="memberLevelHyperlink" runat="server" NavigateUrl="~/Member/member_level.aspx">您的等級</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="ordersHyperlink" runat="server" NavigateUrl="~/Member/orders.aspx">您的訂單</asp:Hyperlink>            
+            </td>
+            <td>
+                <asp:Hyperlink ID="personalDataHyperlink" runat="server" NavigateUrl="~/Member/personal_information.aspx">個人資料</asp:Hyperlink>            
+            </td>
+        </tr>
+    </table>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    
+    </asp:ContentPlaceHolder>
+</asp:Content>

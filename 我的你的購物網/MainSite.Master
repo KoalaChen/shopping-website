@@ -1,0 +1,174 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="MainSite.master.vb" Inherits="我的你的購物網.MainSite" %>
+<%@ Register assembly="FredCK.FCKeditorV2" namespace="FredCK.FCKeditorV2" tagprefix="FCKeditorV2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Main</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <link href="./css/AjaxControlToolkit.css" rel="stylesheet" type="text/css" />
+    <link href="./css/Table.css" rel="stylesheet" type="text/css" />
+    <link href="./css/websiteStyle1.css" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        body {
+            background:none repeat scroll 0 0 #FFFFFF;
+            color:#333333;
+            direction:ltr;
+            font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+            font-size:12px;
+            margin:0;
+            text-align:left;
+            unicode-bidi:embed;
+        }
+        .form
+        {
+        	margin-left:auto;
+        	margin-right:auto;
+        	margin-top:0pt;
+        	margin-bottom:0pt;
+            width: 95%;
+        }
+        </style>
+</head>
+<body class="form">
+    <form id="form1" runat="server">
+    <div>
+        <table style="border-collapse:collapse; width:100%;">
+            <tr>
+                <td>
+                    <table style="border-collapse:collapse; width:100%; padding:0; margin:0;">
+                        <tr>
+                            <td style="background-color: #EFD26D ">
+                            <p style="display:inline; float:left; margin-left:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                                <asp:HyperLink ID="logoImageHyperlink" runat="server" NavigateUrl="~/Default.aspx" ImageUrl="~/Images/logo.png"></asp:HyperLink>
+                            </p>
+                            <p style="display:inline; float:right; margin-right:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                                &nbsp;</p>
+                                <p style="display:inline; float:right; margin-right:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                                <asp:TextBox ID="SearchTextBox" runat="server" CssClass="unwatermarked" 
+                                    MaxLength="50" ValidationGroup="Search" Width="70%"></asp:TextBox>
+                                    
+                                <asp:Button ID="searchButton" runat="server" 
+                                    Text="搜尋" ValidationGroup="Search" UseSubmitBehavior="False" />
+                                <asp:RequiredFieldValidator ID="SearchTextBoxRequiredFieldValidator" runat="server" 
+                                    Display="Dynamic" ControlToValidate="SearchTextBox" ErrorMessage="&lt;br /&gt;[請輸入關鍵字]" 
+                                    ValidationGroup="Search"></asp:RequiredFieldValidator>
+                                    <br />
+                                            [<asp:Label ID="visitLabel" runat="server" ForeColor="#996633" 
+                                                style="font-weight: 700"></asp:Label>
+                                            人來過] [商品<asp:Label ID="productCountLabel" runat="server" ForeColor="#6600FF" 
+                                                style="font-weight: 700"></asp:Label>
+                                            種] [線上<asp:Label ID="onlineUserCountLabel" runat="server" ForeColor="#009900" 
+                                                style="font-weight: 700"></asp:Label>
+                                            人] [會員<asp:Label ID="memberCountLabel" runat="server" ForeColor="#CC9900" 
+                                                style="font-weight: 700"></asp:Label>
+                                            人]
+                                </p>
+                                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+                                </asp:ToolkitScriptManager>
+                           </td>
+                            
+                        </tr>
+                        <tr style="background-color: #FFCC66;">
+                            <td style="background-color: #CCFFCC">
+                            <p style="display:inline; float:left; margin-left:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                                <asp:Label ID="memberNameLabel" runat="server" 
+                                    ForeColor="#CC6600"></asp:Label>
+                                您好，歡迎來到<asp:Label ID="websiteNameLabel" runat="server" ForeColor="#3333FF"></asp:Label>
+                                ，您現在的身分為<asp:Label ID="roleNameLabel" runat="server" ForeColor="#669900"></asp:Label>
+                                <asp:Label ID="roleLevelNameLabel" runat="server"></asp:Label>
+                                (<asp:MultiView ID="userLoginLogoutMultiView" runat="server" ActiveViewIndex="0">
+                                    <asp:View ID="loginView" runat="server">
+                                        <asp:HyperLink ID="logInHyperLink" runat="server"  NavigateUrl="~/Public/login.aspx">登入</asp:HyperLink>
+                                        或<asp:HyperLink ID="regHyperLink" runat="server" 
+                                             NavigateUrl="~/Public/Member_Registration.aspx">註冊</asp:HyperLink>
+                                    </asp:View>
+                                    <asp:View ID="logoutView" runat="server">
+                                        <asp:HyperLink ID="logOutHyperLink" runat="server" 
+                                            NavigateUrl="~/Public/logout.aspx">登出</asp:HyperLink>
+                                    </asp:View>
+                                </asp:MultiView>)
+                            </p>
+                                                    <p style="display:inline; float:right; margin-right:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                                                    <asp:HyperLink ID="memberAreaHyperLink" runat="server" 
+                                                            NavigateUrl="~/Member/Default.aspx">會員專區</asp:HyperLink>
+                                                    。<asp:HyperLink ID="ordersHyperLink" runat="server" 
+                                                            NavigateUrl="~/Member/orders.aspx">我的訂單</asp:HyperLink>
+                                                    。<asp:HyperLink ID="cartHyperLink" runat="server" 
+                                                            NavigateUrl="~/Member/cart.aspx">您的購物車</asp:HyperLink>
+                                            [<asp:Label ID="cartProductCountLabel" runat="server" ForeColor="#CC9900"></asp:Label>
+                                            項]$<asp:Label ID="cartTotalCostLabel" runat="server" ForeColor="#CC6600"></asp:Label>
+                                        <asp:MultiView ID="adminMultiView" runat="server">
+                                            <asp:View ID="adminView" runat="server">
+                                                。<asp:LinkButton ID="adminAreaLinkButton" runat="server" 
+                                                    PostBackUrl="~/Admin/Default.aspx">管理後台</asp:LinkButton>
+                                            </asp:View>
+                                        </asp:MultiView>
+                                                    </p>
+                                    
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+                                    <tr>
+                            <td>
+                                <asp:Repeater ID="ClassificationRepeater" runat="server" 
+                                    DataSourceID="ClassificationAccessDataSource">
+                                    <HeaderTemplate>
+                                    <table style="width:100%;text-align:center;">
+                                        <tr>
+                                            <td>
+                                                <asp:Hyperlink ID="categoryHyperlink" runat="server"
+                                                 NavigateUrl="~/Default.aspx">
+                                                    所有產品
+                                                </asp:Hyperlink>
+                                            </td>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <td>
+                                            <asp:Hyperlink ID="categoryHyperlink" runat="server"
+                                             NavigateUrl='<%#Eval("id","~/Public/category.aspx?id={0}")%>'>
+                                                <%#Eval("分類名稱")%>
+                                            </asp:Hyperlink>
+                                        </td>
+                                    </ItemTemplate>
+                                    <AlternatingItemTemplate>
+                                        <td>
+                                            <asp:Hyperlink ID="categoryHyperlink" runat="server"
+                                             NavigateUrl='<%#Eval("id","~/Public/category.aspx?id={0}")%>'>
+                                                <%#Eval("分類名稱")%>
+                                            </asp:Hyperlink>
+                                        </td>
+                                    </AlternatingItemTemplate>
+                                    <FooterTemplate>
+                                        </tr>
+                                        </table>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                                        </td>
+                        </tr>
+
+            <tr>
+                <td colspan="2">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <asp:Label ID="CopyrightNoticeLabel" runat="server" style="text-align: center"></asp:Label>
+                                <asp:AccessDataSource ID="ClassificationAccessDataSource" runat="server" 
+                                    DataFile="~/App_Data/MainDatabase.mdb" 
+                                    
+                        SelectCommand="SELECT [id], [分類名稱] FROM [分類] ORDER BY [分類名稱] DESC"></asp:AccessDataSource>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,4 @@
+.step-ui-widget { font-family: Segoe UI, Arial, sans-serif; font-size: 1.1em; }
+.step-ui-state-highlight{border: 1px solid #cccccc; background: #eeeeee url(images/ui-bg_highlight-soft_80_eeeeee_1x100.png) 50% top repeat-x; color: #2e7db2; }
+.step-ui-corner-all { -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+.step-ui-state-error{border: 1px solid #ffb73d; background: #ffc73d url(images/ui-bg_glass_40_ffc73d_1x400.png) 50% 50% repeat-x; color: #111111; }

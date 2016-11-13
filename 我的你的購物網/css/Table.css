@@ -1,0 +1,18 @@
+﻿body {	font-size: small;
+}
+.entry-content table{
+border:1px solid #DEE9F6;
+}
+.entry-content table caption{
+font-size:15px;
+}
+.entry-content table tr td {
+border-top:1px solid #DEE9F6;
+}
+.entry-content table tr th {
+background:#DEE9F6;
+text-align:left;
+}
+.entry-content table tr:hover{
+background:#FFFFC0 ;
+}

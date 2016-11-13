@@ -1,0 +1,88 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="AdminSite.master.vb" Inherits="我的你的購物網.AdminSite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--#INCLUDE FILE="IsAdmin.aspx"-->
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>管理介面</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+        .style2
+        {
+            background-color: #CCFF66;
+        }
+    </style>
+    <link href="../css/websiteStyle1.css" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <table class="style1" style="margin:0; padding:0;">
+            <tr>
+                <td colspan="8" style="background-color: #FF9900">
+                    <p style="display:inline; float:left; margin-right:0px; margin-top: 0pt; margin-bottom: 0pt;">
+                        <b>
+                            <asp:Hyperlink ID="backToDefaultPageHyperlink" runat="server" 
+                            NavigateUrl="~/Default.aspx"></asp:Hyperlink>
+                            的 管理後台
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    <asp:HyperLink ID="defaultHyperLink" runat="server" 
+                        NavigateUrl="~/Admin/Default.aspx">管理首頁</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="memberHyperLink" runat="server"
+                     NavigateUrl="~/Admin/member.aspx">會員管理</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="noticeHyperLink" runat="server"
+                     NavigateUrl="~/Admin/notice.aspx">公告管理</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="product_data_HyperLink" runat="server" 
+                        NavigateUrl="~/Admin/product_data.aspx">產品資料</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="categoryHyperLink" runat="server" 
+                        NavigateUrl="~/Admin/category.aspx">分類管理</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="orderHyperLink" runat="server" 
+                        NavigateUrl="~/Admin/order.aspx">訂單管理</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="systemSettingHyperLink" runat="server" 
+                        NavigateUrl="~/Admin/system_setting.aspx">系統設定</asp:HyperLink>
+                </td>
+                <td class="style2">
+                    <asp:HyperLink ID="defect_report_HyperLink" runat="server" 
+                        NavigateUrl="~/Admin/defect_report.aspx">問題回報</asp:HyperLink>
+                    </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

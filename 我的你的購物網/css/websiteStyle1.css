@@ -1,0 +1,17 @@
+﻿body 
+{
+	margin:0;
+	padding:0;
+}
+.nav
+{
+	display:inline;
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+	position:relative;
+}
+A:link{color:blue; font-size:9pt; text-decoration:none}
+A:visited{color:blue; font-size:9pt; text-decoration:none}
+A:hover{color:red; font-size:9pt; text-decoration:underline}
+A:active{color:red; font-size:9pt; text-decoration:underline}
