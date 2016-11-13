@@ -18,6 +18,10 @@
     End Sub
 
     Protected Sub categoryGridView_RowUpdating(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) Handles categoryGridView.RowUpdating
+        If e.OldValues("分類名稱") = e.OldValues("分類名稱") Then
+            e.Cancel = False
+            Exit Sub
+        End If '更新名稱一樣，沒變
         Dim sqlStr As String = " SELECT 分類名稱" & _
                                " FROM 分類" & _
                                " WHERE 分類.分類名稱='" & e.NewValues("分類名稱") & "';"

@@ -8,16 +8,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>
         分類管理</h3>
-        <br />
-    <asp:UpdatePanel ID="categoryUpdatePanel" runat="server">
-        <ContentTemplate>
-            <b>目前分類</b><br />
+            <b __designer:mapid="15d">目前分類</b><br __designer:mapid="15e" />
             <asp:GridView ID="categoryGridView" runat="server" AllowPaging="True" 
                 AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" 
                 DataKeyNames="id" DataSourceID="categoryAccessDataSource" ForeColor="#333333" 
                 GridLines="None">
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
+                    <asp:CommandField ShowSelectButton="True" />
                     <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" 
@@ -26,10 +24,8 @@
                                 CommandName="Cancel" Text="取消"></asp:LinkButton>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" 
+                            <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" 
                                 CommandName="Edit" Text="編輯"></asp:LinkButton>
-                            &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" 
-                                CommandName="Select" Text="選取"></asp:LinkButton>
                             &nbsp;<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" 
                                 CommandName="Delete" onclientclick="return confirm('您確定要刪除嗎？')" Text="刪除"></asp:LinkButton>
                         </ItemTemplate>
@@ -98,18 +94,22 @@
                     <asp:Parameter Name="分類名稱" Type="String" />
                 </InsertParameters>
             </asp:AccessDataSource>
-            <br />
-            <b>分類下的商品資料</b><br />
+            <br __designer:mapid="183" />
+            <b __designer:mapid="184">分類下的商品資料</b><br __designer:mapid="185" />
             <asp:GridView ID="productGridView" runat="server" AllowPaging="True" 
                 AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" 
-                DataSourceID="productAccessDataSource" ForeColor="#333333" GridLines="None">
+                DataSourceID="productAccessDataSource" ForeColor="#333333" 
+                GridLines="None" DataKeyNames="id">
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" 
                         SortExpression="id" />
-                    <asp:BoundField DataField="產品名稱" HeaderText="產品名稱" SortExpression="產品名稱" />
-                    <asp:BoundField DataField="照片檔名" HeaderText="照片檔名" SortExpression="照片檔名" />
-                    <asp:BoundField DataField="價格" HeaderText="價格" SortExpression="價格" />
+                    <asp:BoundField DataField="名稱" HeaderText="產品名稱" SortExpression="名稱" />
+                    <asp:ImageField DataAlternateTextField="主照片" DataImageUrlField="主照片" 
+                        DataImageUrlFormatString="Images/Product/{0}" HeaderText="主照片" 
+                        SortExpression="主照片">
+                    </asp:ImageField>
+                    <asp:BoundField DataField="價格之最大值" HeaderText="價格" SortExpression="價格之最大值" />
                     <asp:CheckBoxField DataField="上架" HeaderText="上架" ReadOnly="True" 
                         SortExpression="上架" />
                 </Columns>
@@ -123,9 +123,35 @@
                 <EditRowStyle BackColor="#999999" />
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             </asp:GridView>
-            <br />
-            <br />
-            <b>新增作業</b><br />
+            <asp:AccessDataSource ID="productAccessDataSource" runat="server" 
+                DataFile="~/App_Data/MainDatabase.mdb" SelectCommand="
+                            SELECT 產品.id, 分類.分類名稱, 產品.名稱, 產品.內容, 主照片, 產品.上架,
+            (
+	            SELECT 售價.價格
+	            FROM 售價
+	            WHERE 售價.設定起始日期=
+	            (
+		            SELECT Max(售價.設定起始日期) AS 設定起始日期之最大值
+		            FROM 售價
+                    WHERE 售價.[產品id]=產品.id AND 售價.設定起始日期&lt;=now();
+	            )
+	            AND 產品id=產品.id;
+            )
+            AS 價格之最大值
+            FROM 
+            (
+                產品 INNER JOIN 分類 ON 產品.分類id = 分類.id
+            )
+            Where 產品.分類id=?;
+">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="categoryGridView" Name="?" 
+                        PropertyName="SelectedValue" />
+                </SelectParameters>
+            </asp:AccessDataSource>
+            <br __designer:mapid="198" />
+            <br __designer:mapid="199" />
+            <b __designer:mapid="19a">新增作業</b><br __designer:mapid="19b" />
             新的分類名稱：<asp:TextBox ID="newCategoryTextBox" runat="server" 
                 CssClass="unwatermarked" ValidationGroup="addNewCategory"></asp:TextBox>
             <asp:TextBoxWatermarkExtender ID="newCategoryTextBox_TextBoxWatermarkExtender" 
@@ -134,7 +160,7 @@
             </asp:TextBoxWatermarkExtender>
             <asp:Button ID="addCategoryButton" runat="server" Text="新增" 
                 ValidationGroup="addNewCategory" />
-            <br />
+            <br __designer:mapid="19f" />
             <DotNetAge:Dialog ID="insertCategoryResultDialog" runat="server" ShowModal="True" 
         Title="新增分類結果">
         <BodyTemplate>
@@ -174,22 +200,10 @@
         ui-icon ui-icon-alert&quot;&gt;&lt;/span&gt;請輸入10字內&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;" 
                 ValidationExpression=".{1,10}" ValidationGroup="addNewCategory"></asp:RegularExpressionValidator>
                 
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        <br />
         <br />
         <br />
     <br />
-    <asp:AccessDataSource ID="productAccessDataSource" runat="server" 
-        DataFile="~/App_Data/MainDatabase.mdb" SelectCommand="SELECT 產品.id, 產品.名稱 AS 產品名稱, 產品照片.照片檔名, Max(售價.價格) AS 價格, 產品.上架
-FROM 分類 INNER JOIN ((產品 INNER JOIN 售價 ON 產品.id = 售價.產品id) INNER JOIN 產品照片 ON 產品.id = 產品照片.產品id) ON 分類.id = 產品.分類id
-GROUP BY 分類.id, 產品.id, 產品.名稱, 產品照片.照片檔名, 產品.上架
-HAVING (((分類.id)=?) AND ((Max(售價.價格))&lt;=Now()));
-">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="categoryGridView" Name="?" 
-                PropertyName="SelectedValue" />
-        </SelectParameters>
-    </asp:AccessDataSource>
-
+    
 
 </asp:Content>

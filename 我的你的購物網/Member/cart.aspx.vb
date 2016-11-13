@@ -225,9 +225,11 @@
     End Sub
 
     Protected Sub CartMultiView_ActiveViewChanged(ByVal sender As Object, ByVal e As EventArgs) Handles CartMultiView.ActiveViewChanged
-        StepLabel.Text = webModule.GenerateStepTable(CartMultiView.ActiveViewIndex, _
-                                    New String() {"(1)修改訂購明細", "(2)填寫聯絡資料", "(3)確認資料", "(4)完成訂購"}, _
-                                    ResolveUrl("~\css\step.css")) '顯示目前步驟進度條
+        If CartMultiView.ActiveViewIndex < 5 Then
+            StepLabel.Text = webModule.GenerateStepTable(CartMultiView.ActiveViewIndex, _
+                                        New String() {"(1)修改訂購明細", "(2)填寫聯絡資料", "(3)確認資料", "(4)完成訂購"}, _
+                                        ResolveUrl("~\css\step.css")) '顯示目前步驟進度條
+        End If
     End Sub
 
     Protected Sub UpdateCartButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles UpdateCartButton.Click

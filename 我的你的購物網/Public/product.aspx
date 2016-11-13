@@ -16,8 +16,6 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        &nbsp;</p>
     <asp:UpdatePanel ID="productUpdatePanel" runat="server">
         <ContentTemplate>
             <asp:FormView ID="productFormView" runat="server" 

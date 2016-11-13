@@ -16,15 +16,6 @@ Option Explicit On
 Partial Public Class category1
 
     '''<summary>
-    '''categoryUpdatePanel 控制項。
-    '''</summary>
-    '''<remarks>
-    '''自動產生的欄位。
-    '''將移動欄位宣告從設計檔案修改為程式碼後置檔案。
-    '''</remarks>
-    Protected WithEvents categoryUpdatePanel As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
     '''categoryGridView 控制項。
     '''</summary>
     '''<remarks>
@@ -77,6 +68,15 @@ Partial Public Class category1
     '''將移動欄位宣告從設計檔案修改為程式碼後置檔案。
     '''</remarks>
     Protected WithEvents productGridView As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''productAccessDataSource 控制項。
+    '''</summary>
+    '''<remarks>
+    '''自動產生的欄位。
+    '''將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+    '''</remarks>
+    Protected WithEvents productAccessDataSource As Global.System.Web.UI.WebControls.AccessDataSource
 
     '''<summary>
     '''newCategoryTextBox 控制項。
@@ -140,13 +140,4 @@ Partial Public Class category1
     '''將移動欄位宣告從設計檔案修改為程式碼後置檔案。
     '''</remarks>
     Protected WithEvents newCategoryRegularExpressionValidator As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''productAccessDataSource 控制項。
-    '''</summary>
-    '''<remarks>
-    '''自動產生的欄位。
-    '''將移動欄位宣告從設計檔案修改為程式碼後置檔案。
-    '''</remarks>
-    Protected WithEvents productAccessDataSource As Global.System.Web.UI.WebControls.AccessDataSource
 End Class

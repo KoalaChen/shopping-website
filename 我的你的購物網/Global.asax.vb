@@ -39,10 +39,10 @@ Public Class Global_asax
 
     Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
         ' 在錯誤發生時引發
-        Dim ex As Exception = Server.GetLastError '取得Exception錯誤
+        'Dim ex As Exception = Server.GetLastError '取得Exception錯誤
         Try
-            Response.Redirect("~/Error/?Reason=" & Server.UrlEncode(ex.Message))
-            Server.ClearError()
+            'Response.Redirect("~/Error/?Reason=" & Server.UrlEncode(ex.Message))
+            'Server.ClearError()
         Catch ex2 As Exception
 
         End Try

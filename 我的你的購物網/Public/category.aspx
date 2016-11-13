@@ -103,8 +103,8 @@
                         名稱:
                         <asp:TextBox ID="名稱TextBox" runat="server" Text='<%# Bind("名稱") %>' />
                         <br />
-                        照片檔名:
-                        <asp:TextBox ID="照片檔名TextBox" runat="server" Text='<%# Bind("照片檔名") %>' />
+                        照片:
+                        <asp:TextBox ID="照片檔名TextBox" runat="server" Text='<%# Bind("主照片") %>' />
                         <br />
                         價格之最大值:
                         <asp:TextBox ID="價格之最大值TextBox" runat="server" Text='<%# Bind("價格之最大值") %>' />
@@ -148,8 +148,8 @@
                         名稱:
                         <asp:TextBox ID="名稱TextBox" runat="server" Text='<%# Bind("名稱") %>' />
                         <br />
-                        照片檔名:
-                        <asp:TextBox ID="照片檔名TextBox" runat="server" Text='<%# Bind("照片檔名") %>' />
+                        照片:
+                        <asp:TextBox ID="照片檔名TextBox" runat="server" Text='<%# Bind("主照片") %>' />
                         <br />
                         價格之最大值:
                         <asp:TextBox ID="價格之最大值TextBox" runat="server" Text='<%# Bind("價格之最大值") %>' />
@@ -172,7 +172,7 @@
                             <tr>
                                 <td rowspan="3">
                                     <asp:Image ID="Image1" runat="server" CssClass="imageResize" 
-                                        ImageUrl='<%# Eval("照片檔名", "images/product/{0}") %>' />
+                                        ImageUrl='<%# Eval("主照片", "images/product/{0}") %>' />
                                 </td>
                                 <td>
                                     (<i>#<asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>'></asp:Label>
@@ -203,11 +203,24 @@
     <p>
         <asp:AccessDataSource ID="allProductAccessDataSource" runat="server" 
             DataFile="~/App_Data/MainDatabase.mdb" SelectCommand="
-            SELECT 產品.id, 產品.名稱, 主照片, Max(售價.價格) AS 價格之最大值
-            FROM 產品 INNER JOIN 售價 ON 產品.id = 售價.產品id
-            Where 產品.分類id=?
-            GROUP BY 產品.id, 產品.名稱, 產品.上架, 主照片
-            HAVING (((產品.上架)=True) AND ((Max(售價.價格))&lt;Now()));
+            SELECT 產品.id, 分類.分類名稱, 產品.名稱, 產品.內容, 主照片, 產品.上架,
+            (
+	            SELECT 售價.價格
+	            FROM 售價
+	            WHERE 售價.設定起始日期=
+	            (
+		            SELECT Max(售價.設定起始日期) AS 設定起始日期之最大值
+		            FROM 售價
+                    WHERE 售價.[產品id]=產品.id AND 售價.設定起始日期&lt;=now();
+	            )
+	            AND 產品id=產品.id;
+            )
+            AS 價格之最大值
+            FROM 
+            (
+                產品 INNER JOIN 分類 ON 產品.分類id = 分類.id
+            )
+            Where 產品.分類id=?;
             ">
             <SelectParameters>
                 <asp:QueryStringParameter DefaultValue="0" Name="?" QueryStringField="id" />
